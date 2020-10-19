@@ -1,4 +1,4 @@
-public class Subtract extends Operation{
+public class Subtract extends Operand{
 
     Operand o1;
     Operand o2;
@@ -8,8 +8,7 @@ public class Subtract extends Operation{
         this.o2 = o2;
     }
 
-    public Operand evaluateOperation() {
-        int result = o1.getValue() - o2.getValue();
-        return new Number(result);
+    public int getValue() {
+        return o1.getValue() - o2.getValue();
     }
 }

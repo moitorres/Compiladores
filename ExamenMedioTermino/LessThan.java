@@ -1,4 +1,4 @@
-public class LessThan extends Operation{
+public class LessThan extends Operand{
 
     Operand o1;
     Operand o2;
@@ -8,7 +8,7 @@ public class LessThan extends Operation{
         this.o2 = o2;
     }
 
-    public Operand evaluateOperation() {
+    public int getValue() {
         int result;
 
         if(o1.getValue() < o2.getValue())
@@ -16,6 +16,6 @@ public class LessThan extends Operation{
         else
             result = 0;
 
-        return new Number(result);
+        return result;
     }
 }

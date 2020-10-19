@@ -28,43 +28,33 @@ public class MiListener extends TACBaseListener {
         //The assign is the assignment of an operation
         else{
             Operand o2 = pila.pop();
-            System.out.println(o2.getValue());
             Operand o1 = pila.pop();
-            System.out.println(o1.getValue());
 
             switch (ctx.operador().getText()){
 
                 case "+":
-                    Add add = new Add(o1,o2);
-                    s = new Assign(id, add.evaluateOperation());
+                    s = new Assign(id, new Add(o1,o2));
                     break;
                 case "-":
-                    Subtract subtract = new Subtract(o1,o2);
-                    s = new Assign(id, subtract.evaluateOperation());
+                    s = new Assign(id, new Subtract(o1,o2));
                     break;
                 case "*":
-                    Multiply multiply = new Multiply(o1,o2);
-                    s = new Assign(id, multiply.evaluateOperation());
+                    s = new Assign(id, new Multiply(o1,o2));
                     break;
                 case "/":
-                    Divide divide = new Divide(o1,o2);
-                    s = new Assign(id, divide.evaluateOperation());
+                    s = new Assign(id, new Divide(o1,o2));
                     break;
                 case "<":
-                    LessThan lessThan = new LessThan(o1,o2);
-                    s = new Assign(id, lessThan.evaluateOperation());
+                    s = new Assign(id, new LessThan(o1,o2));
                     break;
                 case "==":
-                    Equals equals = new Equals(o1,o2);
-                    s = new Assign(id, equals.evaluateOperation());
+                    s = new Assign(id, new Equals(o1,o2));
                     break;
                 case "&&":
-                    And and = new And(o1,o2);
-                    s = new Assign(id, and.evaluateOperation());
+                    s = new Assign(id, new And(o1,o2));
                     break;
                 case "||":
-                    Or or = new Or(o1,o2);
-                    s = new Assign(id, or.evaluateOperation());
+                    s = new Assign(id, new Or(o1,o2));
                     break;
             }
         }
@@ -93,7 +83,7 @@ public class MiListener extends TACBaseListener {
             Array arr = new Array(idArray, index.getValue());
             s = new AssignArray(arr, value);
         }
-        //Assign value from an arrray to a variable
+        //Assign value from an array to a variable
         else{
             if(ctx.ID().size()==3){
                 Statement.labels.put(ctx.ID(0).getText(), Statement.stmnts.size());

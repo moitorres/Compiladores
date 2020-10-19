@@ -7,8 +7,6 @@ public class ID extends Operand{
     }
 
     public int getValue(){
-        /*System.out.println(id);
-        System.out.println(Statement.vars.get(id));*/
         return Statement.vars.get(id);
     }
 

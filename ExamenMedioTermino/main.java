@@ -1,6 +1,8 @@
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
+import java.util.Arrays;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -15,10 +17,12 @@ public class Main {
             ParseTreeWalker walker = new ParseTreeWalker();
             walker.walk(listener, tree);
 
+            //System.out.println(Arrays.toString(Statement.stmnts.toArray()));
+
             Statement.exec();
         }
         catch(Exception e) {
-            System.out.println("Error in the three address code entered");
+            System.out.println("Error");
             System.out.println(e);
         }
     }

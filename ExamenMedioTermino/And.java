@@ -1,4 +1,4 @@
-public class And extends Operation{
+public class And extends Operand{
 
     Operand o1;
     Operand o2;
@@ -8,7 +8,7 @@ public class And extends Operation{
         this.o2 = o2;
     }
 
-    public Operand evaluateOperation() {
+    public int getValue() {
         int result;
 
         if( (o1.getValue() == 1) && (o2.getValue() == 1))
@@ -16,6 +16,6 @@ public class And extends Operation{
         else
             result = 0;
 
-        return new Number(result);
+        return result;
     }
 }
