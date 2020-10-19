@@ -16,17 +16,29 @@ public interface TACVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitProg(TACParser.ProgContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link TACParser#expr}.
+	 * Visit a parse tree produced by {@link TACParser#statement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitExpr(TACParser.ExprContext ctx);
+	T visitStatement(TACParser.StatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TACParser#operando}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOperando(TACParser.OperandoContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TACParser#assign}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitAssign(TACParser.AssignContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TACParser#assignArray}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAssignArray(TACParser.AssignArrayContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TACParser#goTo}.
 	 * @param ctx the parse tree
@@ -46,12 +58,6 @@ public interface TACVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitIfTrue(TACParser.IfTrueContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link TACParser#array}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitArray(TACParser.ArrayContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link TACParser#print}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -63,10 +69,4 @@ public interface TACVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitOperador(TACParser.OperadorContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link TACParser#operando}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitOperando(TACParser.OperandoContext ctx);
 }

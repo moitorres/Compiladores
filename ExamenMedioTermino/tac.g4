@@ -2,29 +2,31 @@ grammar TAC;
 prog:	(statement NEWLINE)* ;
 
     statement:  assign
+         | assignArray
          | goTo
          | ifFalse
          | ifTrue
          | print
          ;
 
-    assign: (ID ':')? ID '=' operando operador operando
-         |  (ID ':')? ID '=' operando
-         |  (ID ':')? ID '[' operando ']' '=' operando
-         |  (ID ':')? ID '=' ID '[' operando ']'
-         ;
+    operando: ID | INT;
+
+    assign: (ID ':')? ID '=' operando
+          | (ID ':')? ID '=' operando operador operando
+          ;
+
+    assignArray: (ID ':')? ID '[' operando ']' '=' operando
+         |  (ID ':')? ID '=' ID '[' operando ']';
 
     goTo:  (ID ':')? 'goto' ID;
 
-    ifFalse: (ID ':')? 'ifFalse' ID 'goto' ID;
+    ifFalse: (ID ':')? 'ifFalse' operando 'goto' ID;
 
-    ifTrue: (ID ':')? 'ifTrue' ID 'goto' ID;
+    ifTrue: (ID ':')? 'ifTrue' operando 'goto' ID;
 
-    print: (ID ':')? 'print(' ID ')';
+    print: (ID ':')? 'print(' operando ')';
 
-    operador: '*'| '/' | '+' | '-' | '<' | '==' | '&&' | '||';
-
-    operando: ID | INT;
+    operador: '+' | '-' | '*' | '/' | '<' | '==' | '&&' | '||';
 
 NEWLINE : [\n\r]+ ;
 INT     : DIGIT+ ;

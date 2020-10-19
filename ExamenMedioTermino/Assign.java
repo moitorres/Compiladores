@@ -6,10 +6,11 @@ public class Assign extends Statement{
         this.id = id;
         this.operand = operand;
     }
-    
+
     public void eval(){
         super.eval();
         Statement.vars.put(id, operand.getValue());
+        System.out.println(Statement.vars.get(id));
     }
 
 }

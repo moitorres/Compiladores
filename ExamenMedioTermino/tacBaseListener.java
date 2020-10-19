@@ -27,13 +27,25 @@ public class TACBaseListener implements TACListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpr(TACParser.ExprContext ctx) { }
+	@Override public void enterStatement(TACParser.StatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpr(TACParser.ExprContext ctx) { }
+	@Override public void exitStatement(TACParser.StatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterOperando(TACParser.OperandoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOperando(TACParser.OperandoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -46,6 +58,18 @@ public class TACBaseListener implements TACListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitAssign(TACParser.AssignContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAssignArray(TACParser.AssignArrayContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAssignArray(TACParser.AssignArrayContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -87,18 +111,6 @@ public class TACBaseListener implements TACListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterArray(TACParser.ArrayContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitArray(TACParser.ArrayContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterPrint(TACParser.PrintContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -118,18 +130,6 @@ public class TACBaseListener implements TACListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitOperador(TACParser.OperadorContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterOperando(TACParser.OperandoContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitOperando(TACParser.OperandoContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

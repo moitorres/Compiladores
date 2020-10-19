@@ -23,7 +23,14 @@ public class TACBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements TA
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitExpr(TACParser.ExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitStatement(TACParser.StatementContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitOperando(TACParser.OperandoContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -31,6 +38,13 @@ public class TACBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements TA
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitAssign(TACParser.AssignContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitAssignArray(TACParser.AssignArrayContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -58,13 +72,6 @@ public class TACBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements TA
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitArray(TACParser.ArrayContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
 	@Override public T visitPrint(TACParser.PrintContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -73,11 +80,4 @@ public class TACBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements TA
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitOperador(TACParser.OperadorContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitOperando(TACParser.OperandoContext ctx) { return visitChildren(ctx); }
 }

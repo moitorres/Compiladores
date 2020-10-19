@@ -6,11 +6,12 @@ public class Label extends Statement{
         this.label = label;
         this.position = Statement.labels.size();
     }
+
     public void eval(){
         super.eval();
         Statement.labels.put(label,position);
     }
     public int getValue(){
-        return position;
+        return Statement.labels.get(label);
     }
 }

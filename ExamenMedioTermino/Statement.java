@@ -6,6 +6,7 @@ import java.util.Map;
 abstract public class Statement {
     public static List<Statement> stmnts = new ArrayList<>();
     public static Map<String, Integer> vars = new HashMap<>();
+    public static Map<String, Map<Integer, Integer> > arrays = new HashMap<>();
     public static Map<String, Integer> labels = new HashMap<>();
     public static int PC = 0;
 
@@ -15,8 +16,8 @@ abstract public class Statement {
 
     static final void exec(){
         PC=0;
-        while(PC < stmnts.size())
+        while(PC < stmnts.size()) {
             stmnts.get(PC).eval();
-
+        }
     }
 }

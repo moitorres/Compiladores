@@ -10,16 +10,17 @@ public class Main {
             TACLexer lexer = new TACLexer(input);
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             TACParser parser = new TACParser(tokens);
+            ParseTree tree = parser.prog();
+            MiListener listener = new MiListener();
+            ParseTreeWalker walker = new ParseTreeWalker();
+            walker.walk(listener, tree);
 
-        ParseTree tree = parser.prog();
-        System.out.println(tree.toStringTree(parser));
-        /*ParseTreeWalker walker = new ParseTreeWalker();
-        MiListener listener = new MiListener();
-        walker.walk(listener, tree);
-        */
+            Statement.exec();
         }
         catch(Exception e) {
-            System.out.println("Error"); }
+            System.out.println("Error in the three address code entered");
+            System.out.println(e);
+        }
     }
 
 }
