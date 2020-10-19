@@ -5,8 +5,11 @@ prog:	(statement NEWLINE)* ;
          | assignArray
          | goTo
          | ifFalse
+         | ifFalseArray
          | ifTrue
+         | ifTrueArray
          | print
+         | printArray
          ;
 
     operando: ID | INT;
@@ -22,9 +25,15 @@ prog:	(statement NEWLINE)* ;
 
     ifFalse: (ID ':')? 'ifFalse' operando 'goto' ID;
 
+    ifFalseArray: (ID ':')? 'ifFalse' ID '[' operando ']' 'goto' ID;
+
     ifTrue: (ID ':')? 'ifTrue' operando 'goto' ID;
 
+    ifTrueArray: (ID ':')? 'ifTrue' ID '[' operando ']' 'goto' ID;
+
     print: (ID ':')? 'print(' operando ')';
+
+    printArray: (ID ':')? 'print(' ID '[' operando '])';
 
     operador: '+' | '-' | '*' | '/' | '<' | '==' | '&&' | '||';
 

@@ -4,11 +4,11 @@ import java.util.Map;
 public class AssignArray extends Statement{
 
     Array array;
-    int value;
+    Operand operand;
 
-    public AssignArray(Array array, int value){
+    public AssignArray(Array array, Operand operand){
         this.array = array;
-        this.value = value;
+        this.operand = operand;
     }
 
     public void eval(){
@@ -19,7 +19,7 @@ public class AssignArray extends Statement{
 
         Map<Integer, Integer> temp = Statement.arrays.get(array.id);
 
-        temp.put(array.position, value);
+        temp.put(array.position, operand.getValue());
 
         Statement.arrays.put(array.id, temp);
     }

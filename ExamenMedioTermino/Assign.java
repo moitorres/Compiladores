@@ -10,7 +10,7 @@ public class Assign extends Statement{
     public void eval(){
         super.eval();
         Statement.vars.put(id, operand.getValue());
-        System.out.println(Statement.vars.get(id));
+        //System.out.println(Statement.vars.get(id));
     }
 
 }

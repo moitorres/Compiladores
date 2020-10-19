@@ -28,7 +28,9 @@ public class MiListener extends TACBaseListener {
         //The assign is the assignment of an operation
         else{
             Operand o2 = pila.pop();
+            System.out.println(o2.getValue());
             Operand o1 = pila.pop();
+            System.out.println(o1.getValue());
 
             switch (ctx.operador().getText()){
 
@@ -69,6 +71,47 @@ public class MiListener extends TACBaseListener {
         Statement.stmnts.add(s);
     }
 
+    @Override public void exitAssignArray(TACParser.AssignArrayContext ctx) {
+
+        String idArray, idVariable;
+        Statement s = null;
+
+        //Assign value to an array
+        if(ctx.operando().size()==2) {
+
+            if(ctx.ID().size()==2){
+                Statement.labels.put(ctx.ID(0).getText(), Statement.stmnts.size());
+                idArray = ctx.ID(1).getText();
+            }
+            else{
+                idArray = ctx.ID(0).getText();
+            }
+
+            Operand value = pila.pop();
+            Operand index = pila.pop();
+
+            Array arr = new Array(idArray, index.getValue());
+            s = new AssignArray(arr, value);
+        }
+        //Assign value from an arrray to a variable
+        else{
+            if(ctx.ID().size()==3){
+                Statement.labels.put(ctx.ID(0).getText(), Statement.stmnts.size());
+                idVariable = ctx.ID(1).getText();
+                idArray = ctx.ID(2).getText();
+            }
+            else{
+                idVariable = ctx.ID(0).getText();
+                idArray = ctx.ID(1).getText();
+            }
+
+            Array arr = new Array(idArray, pila.pop().getValue());
+            s = new Assign(idVariable, arr);
+        }
+
+        Statement.stmnts.add(s);
+    }
+
     @Override public void exitOperando(TACParser.OperandoContext ctx) {
 
         //The operand is a num
@@ -90,6 +133,22 @@ public class MiListener extends TACBaseListener {
             Statement.labels.put(ctx.ID().getText(), Statement.stmnts.size());
         }
         Print p = new Print(pila.pop());
+        Statement.stmnts.add(p);
+    }
+
+    @Override public void exitPrintArray(TACParser.PrintArrayContext ctx) {
+
+        String id;
+
+        if(ctx.ID().size()==2){
+            Statement.labels.put(ctx.ID(0).getText(), Statement.stmnts.size());
+            id = ctx.ID(1).getText();
+        }
+        else{
+            id = ctx.ID(0).getText();
+        }
+        Array arr = new Array(id, pila.pop().getValue());
+        Print p = new Print(arr);
         Statement.stmnts.add(p);
     }
 
@@ -128,6 +187,25 @@ public class MiListener extends TACBaseListener {
         Statement.stmnts.add(ift);
     }
 
+    @Override public void exitIfTrueArray(TACParser.IfTrueArrayContext ctx) {
+        String idArray, label;
+
+        if(ctx.ID().size()==3){
+            Statement.labels.put(ctx.ID(0).getText(), Statement.stmnts.size());
+            idArray = ctx.ID(1).getText();
+            label = ctx.ID(2).getText();
+        }
+        else{
+            idArray = ctx.ID(0).getText();
+            label = ctx.ID(1).getText();
+        }
+
+        Array arr = new Array(idArray,pila.pop().getValue());
+        Label l = new Label(label);
+        IfTrue ift = new IfTrue(arr,l);
+        Statement.stmnts.add(ift);
+    }
+
     @Override public void exitIfFalse(TACParser.IfFalseContext ctx) {
         String label;
 
@@ -142,6 +220,25 @@ public class MiListener extends TACBaseListener {
         }
         Label l = new Label(label);
         IfFalse iff = new IfFalse(pila.pop(),l);
+        Statement.stmnts.add(iff);
+    }
+
+    @Override public void exitIfFalseArray(TACParser.IfFalseArrayContext ctx) {
+        String idArray, label;
+
+        if(ctx.ID().size()==3){
+            Statement.labels.put(ctx.ID(0).getText(), Statement.stmnts.size());
+            idArray = ctx.ID(1).getText();
+            label = ctx.ID(2).getText();
+        }
+        else{
+            idArray = ctx.ID(0).getText();
+            label = ctx.ID(1).getText();
+        }
+
+        Array arr = new Array(idArray,pila.pop().getValue());
+        Label l = new Label(label);
+        IfFalse iff = new IfFalse(arr,l);
         Statement.stmnts.add(iff);
     }
 

@@ -52,17 +52,35 @@ public interface TACVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitIfFalse(TACParser.IfFalseContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link TACParser#ifFalseArray}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIfFalseArray(TACParser.IfFalseArrayContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link TACParser#ifTrue}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitIfTrue(TACParser.IfTrueContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link TACParser#ifTrueArray}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIfTrueArray(TACParser.IfTrueArrayContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link TACParser#print}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitPrint(TACParser.PrintContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TACParser#printArray}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrintArray(TACParser.PrintArrayContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TACParser#operador}.
 	 * @param ctx the parse tree

@@ -77,6 +77,16 @@ public interface TACListener extends ParseTreeListener {
 	 */
 	void exitIfFalse(TACParser.IfFalseContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TACParser#ifFalseArray}.
+	 * @param ctx the parse tree
+	 */
+	void enterIfFalseArray(TACParser.IfFalseArrayContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TACParser#ifFalseArray}.
+	 * @param ctx the parse tree
+	 */
+	void exitIfFalseArray(TACParser.IfFalseArrayContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TACParser#ifTrue}.
 	 * @param ctx the parse tree
 	 */
@@ -87,6 +97,16 @@ public interface TACListener extends ParseTreeListener {
 	 */
 	void exitIfTrue(TACParser.IfTrueContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TACParser#ifTrueArray}.
+	 * @param ctx the parse tree
+	 */
+	void enterIfTrueArray(TACParser.IfTrueArrayContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TACParser#ifTrueArray}.
+	 * @param ctx the parse tree
+	 */
+	void exitIfTrueArray(TACParser.IfTrueArrayContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TACParser#print}.
 	 * @param ctx the parse tree
 	 */
@@ -96,6 +116,16 @@ public interface TACListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitPrint(TACParser.PrintContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TACParser#printArray}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrintArray(TACParser.PrintArrayContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TACParser#printArray}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrintArray(TACParser.PrintArrayContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TACParser#operador}.
 	 * @param ctx the parse tree

@@ -99,6 +99,18 @@ public class TACBaseListener implements TACListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterIfFalseArray(TACParser.IfFalseArrayContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIfFalseArray(TACParser.IfFalseArrayContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterIfTrue(TACParser.IfTrueContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -111,6 +123,18 @@ public class TACBaseListener implements TACListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterIfTrueArray(TACParser.IfTrueArrayContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIfTrueArray(TACParser.IfTrueArrayContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterPrint(TACParser.PrintContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -118,6 +142,18 @@ public class TACBaseListener implements TACListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitPrint(TACParser.PrintContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPrintArray(TACParser.PrintArrayContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPrintArray(TACParser.PrintArrayContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
