@@ -8,7 +8,7 @@ public class Produccion {
     public Produccion(String prod, int numSymbols){
         this.prod = prod;
         this.numSymbols = numSymbols;
-        String[] temp = prod.split(" -> ");
+        String[] temp = prod.split("->");
         this.LHS = temp[0];
         this.RHS = temp[1];
     }
