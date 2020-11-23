@@ -96,27 +96,30 @@ public class Main {
                                 
                 //Replace the string with the production in the resultingString
                 resultingString = resultingString.replaceFirst(Pattern.quote(prod.RHS.replaceAll(" ",", ")),Matcher.quoteReplacement(prod.LHS));
-
+                System.out.println(resultingString);
                 //Change the current state and symbol after the pops
                 currentState = stack.peek();
                 currentSymbol = prod.LHS;
 
                 //The goTo action is obtained using the current state and the current symbol
                 String goToState = goto_.get(currentState).get(currentSymbol);
-                
+
                 //The state number in the goTo table is added to the stack
                 stack.push(Integer.parseInt(goToState));
                 
                 /*Semantic Parsing Section*/
 
-                try{
-                    //The semanticParsing function is called
-                    //The semantic values are updated with the function
-                    semanticValues = semanticParsing(semanticValues, prod, engine);
+                if(prod.function != null){
+                    try{
+                        //The semanticParsing function is called
+                        //The semantic values are updated with the function
+                        semanticValues = semanticParsing(semanticValues, prod, engine);
+                    }
+                    catch(Exception e){
+                        System.out.println("Exception: "+e);
+                    }
                 }
-                catch(Exception e){
-                    System.out.println("Exception: "+e);
-                }
+                
             }
 
             //If the current action is 'accept'
