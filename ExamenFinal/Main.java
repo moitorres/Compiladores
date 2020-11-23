@@ -96,7 +96,6 @@ public class Main {
                                 
                 //Replace the string with the production in the resultingString
                 resultingString = resultingString.replaceFirst(Pattern.quote(prod.RHS.replaceAll(" ",", ")),Matcher.quoteReplacement(prod.LHS));
-                System.out.println(resultingString);
                 //Change the current state and symbol after the pops
                 currentState = stack.peek();
                 currentSymbol = prod.LHS;
