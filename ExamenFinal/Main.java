@@ -10,6 +10,7 @@ import java.util.function.Function;
 import javax.script.*;
 import java.io.*;
 import java.util.*;
+import java.util.regex.*;
 import java.lang.*;
 
 public class Main {
@@ -30,12 +31,12 @@ public class Main {
         String currentSymbol = ""; //String for the current symbol of the input
         int currentState = 0; //Int for the current state of the stack
         String currentAction = ""; //String for the current action (from the action table) according to the state and the symbol
-        String resultingString = "$"; //String to store the input going through the productions
+        String resultingString = Arrays.toString(input); //String to store the input going through the productions
 
         Stack<Map<String, Integer>> semanticValues = new Stack<Map<String, Integer>>(); //Stack of Maps to store the semantic values from the productions
         ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn"); //Create a nashorn script engine to execute js functions
 
-        List<String> rsf = new ArrayList<>(); //Arraylist to store the right sentential form of the production at each step
+        ArrayList<String> rsf = new ArrayList<>(); //Arraylist to store the right sentential form of the production at each step
 
         //Fill the rsf with the initial input from the user
         for(int i=0;i<input.length;i++){
@@ -61,17 +62,15 @@ public class Main {
             //If the current action is a 'shift'. Example: s1
             if(currentAction.charAt(0) == 's'){
 
-                //The stack and the current action are printed
-                System.out.println(resultingString + "\t" + stack.toString()  + " " + currentAction);
-
-                //Delete the "s" in the string so it only stays the number of the shift
-                currentAction = currentAction.replaceAll("s","");
                 //The state number of the shift is added to the stack
-                stack.push(Integer.parseInt(currentAction));
-                //The symbol is added to the resulting string
-                resultingString += currentSymbol;
+                //Delete the "s" in the string so it only stays the number of the shift
+                stack.push(Integer.parseInt(currentAction.replaceAll("s","")));
+
                 //The index increments to search for the next symbol in the next cycle
                 index++;
+
+                //The stack and the current action are printed
+                System.out.println(resultingString + "  " + stack.toString()  + " " + currentAction);
 
                 /*Semantic Parsing Section*/
 
@@ -83,14 +82,12 @@ public class Main {
             //If the current action is a 'replace'. Example: r1
             else if(currentAction.charAt(0) == 'r' || currentAction.charAt(0) == 'R'){
 
-                //Delete the "r" in the string so it only stays the number of the replace
-                currentAction = currentAction.replaceAll("r","");
-
                 //Get the current production with the action (minus 1, because the productions start at 1 instead of 0)
-                Produccion prod = prods.get(Integer.parseInt(currentAction)-1);
+                //Delete the "r" in the string so it only stays the number of the replace
+                Produccion prod = prods.get(Integer.parseInt(currentAction.replaceAll("r",""))-1);
 
                 //The stack and the production are printed
-                System.out.println(resultingString + "\t" + stack.toString()  + " " + prod.prod);
+                System.out.println(resultingString + "  " + stack.toString()  + " " + prod.prod);
 
                 //Pop the same number of states as the symbols of the production
                 for(int i=0;i<prod.numSymbols;i++){
@@ -98,7 +95,7 @@ public class Main {
                 }
                                 
                 //Replace the string with the production in the resultingString
-                resultingString = resultingString.replace(prod.RHS, prod.LHS);
+                resultingString = resultingString.replaceFirst(Pattern.quote(prod.RHS.replaceAll(" ",", ")),Matcher.quoteReplacement(prod.LHS));
 
                 //Change the current state and symbol after the pops
                 currentState = stack.peek();
@@ -137,10 +134,10 @@ public class Main {
 
         //The stack and the current action are printed
         //This is for the last iteration of the cyle
-        System.out.println(resultingString + "\t" + stack.toString()  + " " + currentAction);
+        System.out.println(resultingString + "  " + stack.toString()  + " " + currentAction);
 
-
-        System.out.println("Resultado semántico: "+ semanticValues.pop().get("n"));
+        //The semantic result is printed
+        System.out.println("\n Resultado semántico: "+ semanticValues.pop().get("n") + "\n");
     }
 
     public static Stack<Map<String, Integer>> semanticParsing(Stack<Map<String, Integer>> semanticValues, Produccion prod, ScriptEngine engine) throws Exception{
@@ -235,8 +232,6 @@ public class Main {
 
                 //Split into array and use comma as separator
                 String[] temp = line.split(",");
-                //Eliminate whitespace from the production
-                temp[0] = temp[0].replaceAll("\\s+","");
 
                 //Create a new production object
                 Produccion prod = null;

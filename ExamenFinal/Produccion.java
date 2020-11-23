@@ -14,7 +14,7 @@ public class Produccion {
         this.function = function;
 
         //To obtain the LHS and RHS part of the production, the production string is split using the arrow key as a separator
-        String[] temp = prod.split("->");
+        String[] temp = prod.split(" -> ");
         this.LHS = temp[0];
         this.RHS = temp[1];
     }
