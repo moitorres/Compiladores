@@ -137,7 +137,7 @@ public class Main {
         System.out.println(resultingString + "  " + stack.toString()  + " " + currentAction);
 
         //The semantic result is printed
-        System.out.println("\n Resultado semántico: "+ semanticValues.pop().get("n") + "\n");
+        System.out.println("\n Resultado semántico: "+ semanticValues.pop() + "\n");
     }
 
     public static Stack<Map<String, Integer>> semanticParsing(Stack<Map<String, Integer>> semanticValues, Produccion prod, ScriptEngine engine) throws Exception{
